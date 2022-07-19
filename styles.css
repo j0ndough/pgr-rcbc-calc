@@ -1,0 +1,86 @@
+/*
+ * Styling for RC-to-BC calculator
+ */
+
+body {
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+a:link {
+  color: #4287f5;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.amt-form {
+  width: 65px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.red {
+  color: red;
+}
+
+.vertical-boxes {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item * {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+#option-select {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#options-container {
+  align-items: flex-start;
+  height: 0%;
+}
+
+#option-select > * {
+  flex: 50%;
+}
+
+#option-select > fieldset {
+  width: 50%;
+}
+
+#item-select > legend {
+  margin: 10px;
+}
+
+#options-container * {
+  display: flex;
+  margin: 5px;
+}
+
+#results-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#options-container > :nth-child(1) {
+  align-items: center;
+}

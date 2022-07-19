@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+  HTML for RC-to-BC calculator.
+
+  Image icons from https://grayravens.com/
+-->
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>PGR RC:BC Calculator</title>
+    <link href='styles.css' rel='stylesheet' />
+    <script src='calc.js'></script>
+  </head>
+  <body>
+    <header>
+      <h1>PGR RC-to-BC Calculator</h1>
+    </header>
+    <main>
+      <form id="option-select">
+        <fieldset id="item-select">
+          <legend>Item List:</legend>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="bc">
+              <img class="icon" src="img\Item-BlackCard.png" alt="black cards">
+              <label for="bc">Black Cards</label>
+            </div>
+            <div class="hidden">
+              <label for="bc-value">Amount (min 100):</label>
+              <input type="number" id="bc-value" class="amt-form" min="100" step="50">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="basic-con-rnd">
+              <img class="icon" src="img\Item-BasicConstructRnDTicket.png" alt="basic construct r&d tickets">
+              <label for="basic-con-rnd">Basic Construct R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="basic-con-value">Amount (min 250):</label>
+              <input type="number" id="basic-con-value" class="amt-form" min="250" step="250">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="basic-wep-rnd">
+              <img class="icon" src="img\Item-BasicWeaponRnDTicket.png" alt="basic weapon r&d tickets">
+              <label for="basic-wep-rnd">Basic Weapon R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="basic-wep-value">Amount (min 250):</label>
+              <input type="number" id="basic-wep-value" class="amt-form" min="250" step="250">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="event-rnd">
+              <img class="icon" src="img\Item-EventConstructRnDTicket.png" alt="event construct r&d tickets">
+              <label for="event-rnd">Event Construct R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="event-con-value">Amount (min 250):</label>
+              <input type="number" id="event-con-value" class="amt-form" min="250" step="250">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="wep-rnd">
+              <img class="icon" src="img\Item-TargetWeaponRnDTicket.png" alt="targeted weapon r&d tickets">
+              <label for="wep-rnd">Targeted Weapon R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="target-wep-value">Amount (min 250):</label>
+              <input type="number" id="target-wep-value" class="amt-form" min="250" step="50">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="collab-con-rnd">
+              <img class="icon" src="img\Item-CollabConstructR&DTicket.png" alt="collab construct r&d tickets">
+              <label for="collab-con-rnd">Collab Construct R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="collab-con-value">Amount (min 250):</label>
+              <input type="number" id="collab-con-value" class="amt-form" min="250" step="50">
+            </div>
+          </div>
+          <div class="item ticket">
+            <div>
+              <input type="checkbox" id="collab-wep-rnd">
+              <img class="icon" src="img\Item-CollabWeaponR&DTicket.png" alt="collab weapon r&d tickets">
+              <label for="collab-wep-rnd">Collab Weapon R&D Tickets</label>
+            </div>
+            <div class="hidden">
+              <label for="collab-wep-value">Amount (min 250):</label>
+              <input type="number" id="collab-wep-value" class="amt-form" min="250" step="50">
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <input type="checkbox" id="wep-usb">
+              <img class="icon" src="img\Item-6StarWeaponResonanceMaterial.png" alt="weapon usb material">
+              <label for="wep-usb">6* Weapon Resonance Material</label>
+            </div>
+            <div class="hidden">
+              <label for="wep-usb-value">Value of selector:</label>
+              <input type="number" id="wep-usb-value" class="amt-form" min="1" max="30">
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <input type="checkbox" id="serum">
+              <img class="icon" src="img\Item-SerumBundleBetaM.png" alt="serum bundle">
+              <label for="serum">Serum</label>
+            </div>
+            <div class="hidden">
+              <label for="serum-value">Amount (min 30):</label>
+              <input type="number" id="serum-value" class="amt-form" min="30" step="30">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset id="options-container" class="options-and-results">
+          <div>
+            <img class="icon" src="img\Item-RainbowCard.png" alt="rainbow card">
+            <label for="rc-cost">RC Cost (1-600):</label>
+            <input type="number" id="rc-cost" class="amt-form" min="1" max="600" step="1" required>
+            <button id="calculate-btn">Calculate</button>
+            <button id="reset-btn">Reset</button>
+          </div>
+          <div class="vertical-boxes">
+            <div>
+              <input type="checkbox" id="enable-serum">
+              <label for="enable-serum">Enable Serum BC value</label>
+            </div>
+            <div>
+              <input type="checkbox" id="enable-rc">
+              <label for="enable-rc">Show RC cost (in USD)</label>
+            </div>
+            <div>
+              <input type="checkbox" id="enable-num-pulls">
+              <label for="enable-num-pulls">Show number of pulls</label>
+            </div>
+            <div>
+              <input type="checkbox" id="enable-pull-cost">
+              <label for="enable-pull-cost">Show cost per pull (in USD)</label>
+            </div>
+          </div>
+          <section id="results-container" class="options-and-results">
+
+          </section>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <p>Image assets taken from <a href="https://grayravens.com/wiki/Main_Page">
+        grayravens.com</a> and are owned by Kuro Game.</p>
+    </footer>
+  </body>
+</html>
