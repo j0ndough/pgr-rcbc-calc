@@ -2,8 +2,11 @@
  * Styling for RC-to-BC calculator
  */
 
-body {
+html {
   background-color: black;
+}
+
+body {
   color: white;
   font-family: 'Roboto Condensed', sans-serif;
 }
