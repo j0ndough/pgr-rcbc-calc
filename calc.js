@@ -8,6 +8,7 @@
   const RC_PER_USD = 6;
   const BC_PER_PULL = 250;
   const SERUM_PER_BC = 2;
+  const VALUE_RANGE = [25, 28, 35];
 
   let pull_BC, reso_BC, serum_BC;
 
@@ -63,8 +64,63 @@
   }
 
   /**
+   * Displays the current RC-to-BC value on the page, as well as other information if checked.
+   * If no item/item quantity is selected, an error is displayed instead.
+   */
+  function displayValue() {
+    let total_BC = pull_BC + reso_BC + serum_BC;
+    let result = gen("p");
+    if (total_BC === 0) {
+      result.id = "error";
+      result.classList.add("red");
+      result.textContent = "Please select at least one item and its amount before calculating.";
+      id("options-container").insertBefore(result, qs("#options-container").children[1]);
+    } else {
+      let header = gen("h2");
+      header.textContent = "Result:";
+      id("results-container").appendChild(header);
+      let rc_val = parseInt(id("rc-cost").value);
+      displayRCValue(total_BC, rc_val);
+      if (id("enable-rc").checked) {
+        displayRCCost(rc_val);
+      }
+      if (id("enable-num-pulls").checked) {
+        displayNumPulls(rc_val);
+      }
+      if (id("enable-pull-cost").checked) {
+        displayPullCost(rc_val);
+      }
+    }
+  }
+
+  /**
+   * Displays the RC-to-BC value on the page, with a color indicator on the value.
+   * @param {Number} total_BC - int containg total equivalent BC value of items selected by user
+   * @param {Number} rc_val - int containing current rc cost specified by user
+   */
+  function displayRCValue(total_BC, rc_val) {
+    let rc_bc_val = total_BC / rc_val;
+    let result = gen("p");
+    result.textContent = "Your RC-to-BC value is: ";
+    let rc_bc_element = gen("span");
+    if (rc_bc_val < VALUE_RANGE[0]) { // poor
+      rc_bc_element.classList.add("red");
+    } else if (rc_bc_val > VALUE_RANGE[0] && rc_bc_val < VALUE_RANGE[1]) { // mediocre
+      rc_bc_element.classList.add("yellow");
+    } else if (rc_bc_val > VALUE_RANGE[1] && rc_bc_val < VALUE_RANGE[2]) { // good
+      rc_bc_element.classList.add("light-green");
+    } else { // excellent
+      rc_bc_element.classList.add("green");
+    }
+    rc_bc_element.textContent = rc_bc_val.toFixed(2).toString() + ".";
+    result.appendChild(rc_bc_element);
+    console.log(result);
+    id("results-container").appendChild(result);
+  }
+
+  /**
    * Displays the USD cost of the current RC value on the page.
-   * @param {Number} rc_val - int containing current rc value
+   * @param {Number} rc_val - int containing current rc cost specified by user
    */
   function displayRCCost(rc_val) {
     let rc_cost = gen("p");
@@ -85,7 +141,7 @@
 
   /**
    * Displays the USD cost for a single pull on the page.
-   * @param {Number} rc_val - int containing current rc value
+   * @param {Number} rc_val - int containing current rc cost specified by user
    */
   function displayPullCost(rc_val) {
     let pull_cost = gen("p");
@@ -93,34 +149,6 @@
     let rc_to_usd = rc_val / RC_PER_USD;
     pull_cost.textContent = "Each pull costs " + (rc_to_usd / num_pulls).toFixed(2) + " USD.";
     id("results-container").appendChild(pull_cost);
-  }
-
-  /**
-   * Displays the current RC-to-BC value on the page, as well as other information if checked.
-   * If no item/item quantity is selected, an error is displayed instead.
-   */
-  function displayValue() {
-    let total_BC = pull_BC + reso_BC + serum_BC;
-    let result = gen("p");
-    if (total_BC === 0) {
-      result.id = "error";
-      result.classList.add("red");
-      result.textContent = "Please select at least one item and its amount before calculating.";
-      id("options-container").insertBefore(result, qs("#options-container").children[1]);
-    } else {
-      let rc_val = parseInt(id("rc-cost").value);
-      result.textContent = "Your RC-to-BC value is: " + (total_BC / rc_val).toFixed(2) + ".";
-      id("results-container").appendChild(result);
-      if (id("enable-rc").checked) {
-        displayRCCost(rc_val);
-      }
-      if (id("enable-num-pulls").checked) {
-        displayNumPulls(rc_val);
-      }
-      if (id("enable-pull-cost").checked) {
-        displayPullCost(rc_val);
-      }
-    }
   }
 
   /**

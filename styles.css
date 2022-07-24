@@ -5,6 +5,7 @@
 body {
   background-color: black;
   color: white;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 h1 {
@@ -38,9 +39,21 @@ a:link {
   color: red;
 }
 
-.vertical-boxes {
-  flex-direction: column;
-  align-items: flex-start;
+.yellow {
+  color: #fcf003;
+}
+
+.light-green {
+  color: #99eb34;
+}
+
+.green {
+  color: #34eb6e;
+}
+
+.underline {
+  text-decoration: underline;
+  text-decoration-thickness: 5%;
 }
 
 .item * {
@@ -59,6 +72,11 @@ a:link {
   height: 0%;
 }
 
+#option-boxes {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 #option-select > * {
   flex: 50%;
 }
@@ -71,14 +89,21 @@ a:link {
   margin: 10px;
 }
 
-#options-container * {
+#results-container {
+  flex-direction: column;
+}
+
+#reference-val {
+  flex-direction: column;
+}
+
+#options-container > *, #rc-amount *, #option-boxes *{
   display: flex;
   margin: 5px;
 }
 
-#results-container {
-  display: flex;
-  flex-direction: column;
+#results-container > *, #reference-val > * {
+  margin: 5px;
 }
 
 #options-container > :nth-child(1) {

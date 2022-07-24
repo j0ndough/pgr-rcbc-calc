@@ -1,19 +1,20 @@
-<!DOCTYPE html>
 <!--
   HTML for RC-to-BC calculator.
 
   Image icons from https://grayravens.com/
 -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <title>PGR RC:BC Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <meta charset='utf-8'>
+    <title>PGR RC-to-BC Value Calculator</title>
     <link href='styles.css' rel='stylesheet' />
     <script src='calc.js'></script>
   </head>
   <body>
     <header>
-      <h1>PGR RC-to-BC Calculator</h1>
+      <h1>PGR RC-to-BC Value Calculator</h1>
     </header>
     <main>
       <form id="option-select">
@@ -120,14 +121,14 @@
           </div>
         </fieldset>
         <fieldset id="options-container" class="options-and-results">
-          <div>
+          <div id="rc-amount">
             <img class="icon" src="img\Item-RainbowCard.png" alt="rainbow card">
             <label for="rc-cost">RC Cost (1-600):</label>
             <input type="number" id="rc-cost" class="amt-form" min="1" max="600" step="1" required>
             <button id="calculate-btn">Calculate</button>
             <button id="reset-btn">Reset</button>
           </div>
-          <div class="vertical-boxes">
+          <div id="option-boxes">
             <div>
               <input type="checkbox" id="enable-serum">
               <label for="enable-serum">Enable Serum BC value</label>
@@ -147,6 +148,17 @@
           </div>
           <section id="results-container" class="options-and-results">
 
+          </section>
+          <section id="reference-val">
+            <h2>Reference Values:</h2>
+            <p>An RC-to-BC value that is <span class="underline">less than</span>
+              25 is <span class="red">poor.</span></p>
+            <p>An RC-to-BC value that is <span class="underline">between</span> 25 and 28
+              is <span class="yellow">mediocre.</span></p>
+            <p>An RC-to-BC value that is <span class="underline">between</span>
+              28 and 35 is <span class="light-green">good.</span></p>
+            <p>An RC-to-BC value that is <span class="underline">greater than</span>
+              35 is <span class="green">excellent.</span></p>
           </section>
         </fieldset>
       </form>
